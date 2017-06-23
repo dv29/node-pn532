@@ -88,7 +88,9 @@ class PN532 extends EventEmitter {
             var buffer = dataFrame.toBuffer();
             logger.debug('Sending buffer:', util.inspect(buffer));
             this.hal.write(buffer, (err) => {
-              logger.error('Error writing', err);
+              if(err){
+                logger.error('Error writing', err);
+              }
             });
         });
     }
